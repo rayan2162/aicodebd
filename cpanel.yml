@@ -1,10 +1,18 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/aicodebd/public_html
-    - echo "Starting deployment to $DEPLOYPATH"
-    - /bin/rsync -av --exclude='.git' --exclude='.cpanel.yml' --exclude='storage/' --exclude='node_modules/' ./ $DEPLOYPATH
+    # Laravel project directory
+    - export DEPLOYPATH=/home/aicodebd/aicodebd
+
+    - echo "🚀 Starting Laravel deployment to $DEPLOYPATH"
+
+    # Copy everything except unnecessary folders
+    - /bin/rsync -av --exclude='.git' --exclude='.cpanel.yml' --exclude='node_modules/' --exclude='storage/' ./ $DEPLOYPATH
+
+    # Run Laravel commands
     - /usr/local/bin/php $DEPLOYPATH/artisan migrate --force
     - /usr/local/bin/php $DEPLOYPATH/artisan optimize:clear
     - /usr/local/bin/php $DEPLOYPATH/artisan config:cache
-    - echo "Deployment completed."
+    - /usr/local/bin/php $DEPLOYPATH/artisan route:cache
+
+    - echo "✅ Laravel deployment completed successfully!"
