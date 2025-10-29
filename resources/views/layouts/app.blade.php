@@ -10,15 +10,12 @@
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-  <!-- DaisyUI + Tailwind -->
+  <!-- DaisyUI + Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind CSS v4 CDN -->
-<link href="https://cdn.tailwindcss.com" rel="stylesheet">
 
-
-<script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
-
+  <!-- Anime.js -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
 
   <style>
     /* Accent color */
@@ -26,6 +23,15 @@
       --accent-color: #ff0044;
     }
 
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+      max-width: 100vw;
+    }
 
     /* Ensure links are clickable and not overlapped */
     nav a {
@@ -33,29 +39,24 @@
       z-index: 50;
     }
 
-
     /* Typewriter animation */
-.typewriter {
-  display: inline-block;
-  overflow: hidden;
-  border-right: 2px solid #ff0044;
-  white-space: nowrap;
-  animation: typing 4s steps(50, end), blink-caret 0.75s step-end infinite;
-}
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      border-right: 2px solid var(--accent-color);
+      white-space: nowrap;
+      animation: typing 4s steps(50, end), blink-caret 0.75s step-end infinite;
+    }
 
-/* Typing effect */
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
 
-/* Blinking cursor */
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #ff0044; }
-}
-
-    
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--accent-color); }
+    }
 
     /* Scroll logo */
   @keyframes scroll {
@@ -65,8 +66,9 @@
   .animate-scroll {
     display: flex;
     width: max-content;
-    animation: scroll 30s linear infinite;
+    animation: scroll 3s linear infinite;
   }
+
 
     /* Hide scrollbar for mobile horizontal scroll */
     .no-scrollbar::-webkit-scrollbar {
@@ -77,12 +79,14 @@
       scrollbar-width: none;
     }
 
+    /* Extra safeguard for sections */
+    main, section, footer {
+      overflow-x: hidden;
+    }
   </style>
-
-
 </head>
 
-<body class="font-sans antialiased min-h-screen flex flex-col">
+<body class="overflow-x-hidden font-sans antialiased min-h-screen flex flex-col">
   
   {{-- Navbar --}}
   @include('layouts.navbar')
@@ -95,10 +99,8 @@
   {{-- Footer --}}
   @include('layouts.footer')
 
-
-
   <script>
-    //   JS: Mobile Menu Toggle 
+    // Mobile Menu Toggle
     document.addEventListener('DOMContentLoaded', function () {
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
@@ -114,16 +116,14 @@
       }
     });
 
-    // project card
-      const container = document.getElementById('card-container');
-
-  function scrollCards(direction) {
-    const scrollAmount = 320; // Adjust based on card width + gap
-    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-  }
-
-// Hand writing animation using Anime.js
-
+    // Project card scroll (if used)
+    const container = document.getElementById('card-container');
+    function scrollCards(direction) {
+      const scrollAmount = 320; // Adjust based on card width + gap
+      if (container) {
+        container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+      }
+    }
   </script>
 
   {{-- Optional script stack --}}
