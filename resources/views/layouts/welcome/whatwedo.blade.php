@@ -1,7 +1,7 @@
 <section class="bg-white py-16 px-6">
   <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-4xl sm:text-5xl md:text-5xl  font-semibold text-gray-900 mb-4">
-      Why Choose Us — <span class="text-[var(--accent-color)]">What Problems We Solve?</span> 
+    <h2 class="text-4xl sm:text-5xl md:text-5xl font-semibold text-gray-900 leading-tight mb-4">
+      Why choose us — <span class="text-[var(--accent-color)]">what problems we solve?</span> 
     </h2>
     <p class="text-gray-600 max-w-2xl mx-auto mb-12">
       We simplify complex development processes, reduce time-to-market, and
